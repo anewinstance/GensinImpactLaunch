@@ -20,6 +20,10 @@ pygame.mixer.music.load(launchSound)
 DW,DH=displayInfo.current_w,displayInfo.current_h
 def Launch():
     os.startfile(launchPath)
+    pyautogui.keyDown('winleft')
+    pyautogui.press("down")
+    pyautogui.press("down")
+    pyautogui.keyUp('winleft')
     time.sleep(soundDelay)
     pygame.mixer.music.play()
     time.sleep(15)
