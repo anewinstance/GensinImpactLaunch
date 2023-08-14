@@ -8,6 +8,8 @@ import cv2
 from config import *
 import psutil
 import os
+import tkinter as tk
+from threading import Thread
 
 #ts=time.time()
 #初始化
@@ -18,27 +20,51 @@ if launchSound=="":
     launchSound="default.mp3"
 pygame.mixer.music.load(launchSound)
 DW,DH=displayInfo.current_w,displayInfo.current_h
+threadKill=0
+
+def splashoff():
+    root.destroy()
+
+
+def splash():
+    global root 
+    root = tk.Tk()
+    root.geometry(f"{DW}x{DH}+0+0")
+    root.overrideredirect(1)
+    root.wm_attributes("-toolwindow", True)
+    root.wm_attributes("-topmost", True)
+    root.after(soundDelay*1000,splashoff)
+    root.mainloop()
+
 def Launch():
-    os.startfile(launchPath)
+    try:
+        os.startfile(launchPath)
+    except:
+        print("可执行文件路径异常(无法启动)")
     pyautogui.keyDown('winleft')
     pyautogui.press("down")
     pyautogui.press("down")
     pyautogui.keyUp('winleft')
+    sp=Thread(target=splash,daemon=True)
+    sp.start()
     time.sleep(soundDelay)
+    #播放声音
     pygame.mixer.music.play()
-    time.sleep(antiRelaunch) #防止反复启动
-    flag=0
+    time.sleep(15)
     while 1:
-        #print("没有退出")
-        pl = psutil.pids()
-        for pid in pl:
-            if procressName in psutil.Process(pid).name():
-                #print("已退出")
-                flag=1
-                break
-        if flag:
+        try:
+            pl = psutil.pids()
+            flag=0
+            for pid in pl:
+                if procressName in psutil.Process(pid).name():
+                    print("没有退出")
+                    flag=1
+        except:
+            pass
+        if not flag:
+            print("已退出")
             break
-        time.sleep(10)
+        time.sleep(antiRelaunch)
 
 #主循环
 while 1:
