@@ -17,3 +17,5 @@ imageSize=(1920,1080)
 launchSound=""
 #延迟播放音频(可以自己微调)
 soundDelay=0
+#触发一次以后再触发的时延(单位是秒)
+antiRelaunch=25
