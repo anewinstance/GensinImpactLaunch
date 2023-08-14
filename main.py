@@ -26,7 +26,7 @@ def Launch():
     pyautogui.keyUp('winleft')
     time.sleep(soundDelay)
     pygame.mixer.music.play()
-    time.sleep(15)
+    time.sleep(antiRelaunch) #防止反复启动
     flag=0
     while 1:
         #print("没有退出")
