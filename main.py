@@ -38,9 +38,11 @@ def splash():
 
 def Launch():
     try:
-        os.startfile(launchPath)
-    except:
+        os.startfile(launchPath+" "+launchFlag)
+    except Exception as e:
         print("可执行文件路径异常(无法启动)")
+        print("如果你遇到了此问题，你可以把错误代码提供给支持人员（有没有支持人员就是另外一回事了）")
+        print("错误代码：", e)
     pyautogui.keyDown('winleft')
     pyautogui.press("down")
     pyautogui.press("down")
