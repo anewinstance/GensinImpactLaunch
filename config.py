@@ -19,3 +19,7 @@ launchSound=""
 soundDelay=0
 #触发一次以后再触发的时延(单位是秒)
 antiRelaunch=25
+#启动参数,默认为空
+#如果要全屏启动非全屏的原神可以试试加上(注意，不包括前面的井号,并且不要去掉双引号
+#-screen-fullscreen 0
+launchArgs=""
