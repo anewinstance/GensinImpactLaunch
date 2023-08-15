@@ -38,7 +38,7 @@ def splash():
 
 def Launch():
     try:
-        os.popen(launchPath+" "+launchFlag)
+        os.popen(launchPath+" "+launchArgs)
     except Exception as e:
         print("可执行文件路径异常(无法启动)")
         print("如果你遇到了此问题，你可以把错误代码提供给支持人员（有没有支持人员就是另外一回事了）")
